@@ -33,4 +33,9 @@
    - 고객이 예약 확인 상태를 마이페이지에서 확인할 수 있어야 한다. (CQRS)
    - 예약 상태가 바뀔 때 마다 카톡 등으로 알림을 줄 수 있어야 한다.
 
+## Event Storming
+
+#### 초기 버전
+
+![screenshot-miro com-2020 12 18-09_30_35](https://user-images.githubusercontent.com/76149887/102559719-e6f60900-4113-11eb-96c6-54829db72270.png)
 
