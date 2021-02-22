@@ -233,7 +233,69 @@ Transfer-Encoding: chunked
 
 ## 폴리글랏 퍼시스턴스
 
-이 항목은 현재 환경에서 가능한 항목 구현을 마무리 하고 추가적으로 고려 예정
+폴리그랏 퍼시스턴스 요건을 만족하기 위해 기존 h2를 hsqldb로 변경
+https://www.baeldung.com/spring-boot-hsqldb 참고
+
+```
+<!--		<dependency>-->
+<!--			<groupId>com.h2database</groupId>-->
+<!--			<artifactId>h2</artifactId>-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
+
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.4.0</version>
+			<scope>runtime</scope>
+		</dependency>
+
+# 변경/재기동 후 예약 주문
+http localhost:8081/orders hotelId=2001 roomType=standard
+
+HTTP/1.1 201 
+Content-Type: application/json;charset=UTF-8
+Date: Mon, 22 Feb 2021 06:11:15 GMT
+Location: http://localhost:8081/orders/1
+Transfer-Encoding: chunked
+
+{
+    "_links": {
+        "order": {
+            "href": "http://localhost:8081/orders/1"
+        },
+        "self": {
+            "href": "http://localhost:8081/orders/1"
+        }
+    },
+    "hotelId": "2001",
+    "roomType": "standard",
+    "status": null
+}
+
+# 저장이 잘 되었는지 조회
+http localhost:8081/orders/1
+
+HTTP/1.1 200 
+Content-Type: application/hal+json;charset=UTF-8
+Date: Mon, 22 Feb 2021 06:17:40 GMT
+Transfer-Encoding: chunked
+
+{
+    "_links": {
+        "order": {
+            "href": "http://localhost:8081/orders/1"
+        },
+        "self": {
+            "href": "http://localhost:8081/orders/1"
+        }
+    },
+    "hotelId": "2001",
+    "roomType": "standard",
+    "status": null
+}
+
+```
 
 ## 폴리글랏 프로그래밍
 
