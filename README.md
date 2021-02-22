@@ -604,7 +604,64 @@ defaulting to time-based testing: 60 seconds
 ## 무정지 재배포
 로칼 도커+쿠버네틱스 환경 조성 후 작업 예정.
 
-# 신규 개발 조직의 추가
-...
+# 참고
+
+## 개발 환경 구성
+
+1. 도커 설치
+https://whitepaek.tistory.com/38
+위에 가면 도커 관련 명령어들도 있음
+
+2. 카프카 설치
+https://dev-jj.tistory.com/entry/MAC-Kafka-%EB%A7%A5%EC%97%90-Kafka-%EC%84%A4%EC%B9%98-%ED%95%98%EA%B8%B0-Docker-homebrew-Apache
+https://jdm.kr/blog/208
+경로 이동 /Users/jinhyeonbak/intensive/kafka_2.12-2.3.0/bin
+주키퍼 실행
+./zookeeper-server-start.sh ../config/zookeeper.properties &
+카프카 broker 실행
+./kafka-server-start.sh ../config/server.properties ( 4 ~ 5 는 건너뛰어도 됨 )
+카프카 topic 만들기
+./kafka-topic.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic teamtwohotel
+카프카 producer 실행
+./kafka-console-poducer.sh --broker-list localhost:9092 --topic teamtwohotel
+카프카 consumer 실행
+./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic teamtwohotel --from-beginning
+카프카 토픽 삭제 ./kafka-topics.sh --zookeeper localhost:2181 --delete --topic DummyTopic
+카프카 토픽 리스트 ./kafka-topics.sh --list --zookeeper localhost:2181
+카프카가 비정상일 때 sudo lsof -i :2181 한뒤
+kill -9 pid 하고 다시 띄워준다
+
+3. httpie 설치
+
+4. aws cli 설치
+https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/install-cliv2-mac.html
+aws configure 로 액세스 ID 등 입력
+
+5. eksctl 설치
+https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/getting-started-eksctl.html
+
+6. IAM 생성
+https://www.44bits.io/ko/post/publishing_and_managing_aws_user_access_key
+
+7. eksctl 생성 ( 시간이 좀 걸림 )
+클러스터 생성
+eksctl create cluster --name admin-eks --version 1.17 --nodegroup-name standard-workers --node-type t3.micro --nodes 4 --nodes-min 1 --nodes-max 4
+
+8. Local EKS 클러스터 토큰가져오기 ( CI/CD 할때 필요한건데, 앞에 설정해줘야 할 게 더 있으니 아래 쪽 CI/CD 다시 참고 )
+aws eks --region ap-northeast-2 update-kubeconfig --name admin-eks
+
+9. 아마존 컨테이너 레지스트리
+아마존 > ecr (elastic container registry) > ecr 레파지터리 : ECR은 각 배포될 이미지 대상과 이름을 맞춰준다
+aws ecr create-repository --repository-name admin-eks --region ap-northeast-2
+aws ecr put-image-scanning-configuration --repository-name admin-eks --image-scanning-configuration scanOnPush=true --region ap-northeast-2
+
+10. AWS 컨테이너 레지스트리 로그인
+aws ecr get-login-password --region (Region-Code) | docker login --username AWS --password-stdin (Account-Id).dkr.ecr.(Region-Code).amazonaws.com
+
+11. AWS 레지스트리에 도커 이미지 푸시하기 (이건 위에서 한 거랑 좀 겹치는듯)
+aws ecr create-repository --repository-name (IMAGE_NAME) --region ap-northeast-2
+docker push (Account-Id).dkr.ecr.ap-northeast-2.amazonaws.com/(IMAGE_NAME):latest
+
+
 
 
