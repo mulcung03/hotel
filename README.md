@@ -1,6 +1,6 @@
 # 호텔 예약
 
-> Winter School 2팀 Workspace입니다.
+Winter School 2팀 Workspace입니다.
 
 ## 시나리오
 
@@ -72,9 +72,16 @@ pp의 Order, store 의 주문처리, 결제의 결제이력은 그와 연결된 
 #### 2021.01.25
 
 - MSAEZ 툴에서 이벤트스토밍 작업
-- 사용자 입장에서 꼭 필요할 때 카카오톡 알림을 받을 수 있도록 
+- 사용자 입장에서 꼭 필요할 때만 카카오톡 알림을 받을 수 있도록 카카오 알림 이벤트 발생 최소화
 
 <img width="1346" alt="hotel_msaez_20210125" src="https://user-images.githubusercontent.com/58290368/105668328-70250a80-5f20-11eb-9982-c26b1f9b1fd4.png">
+
+#### 2021.02.22
+
+- MSAEZ 툴에서 이벤트스토밍 작업
+- 마이페이지를 customer로 
+
+<img width="715" alt="스크린샷 2021-02-22 오후 2 16 17" src="https://user-images.githubusercontent.com/58290368/108666031-91761800-7519-11eb-9a4f-cafe85c9278f.png">
 
 ### 기능 요구사항을 커버하는지 검증
 1. 고객이 원하는 객실을 선택 하여 예약한다.(O)
