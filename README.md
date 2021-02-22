@@ -505,7 +505,87 @@ Transfer-Encoding: chunked
 
 ## CI/CD 설정
 
-각 구현체들은 각자의 source repository 에 구성되었고, pipeline build script 는 각 프로젝트 폴더 이하 cloudbuild.yml 에 포함되었다. (MSAEZ서 추출한 소스 코드 내 포함)
+- 환경변수 준비
+AWS_ACCOUNT_ID KUBE URL : EKS -> 클러스터 -> 구성 "세부정보"의 "API 엔드포인트 URL" CodeBuild 와 EKS 연결
+
+1. eks-admin-service-account.yaml 파일 생성하여 sa 생성
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: eks-admin
+  namespace: kube-system
+  
+2. kubectl apply -f eks-admin-service-account.yaml
+혹은, 바로 적용도 가능함
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: eks-admin
+  namespace: kube-system
+EOF
+
+3. eks-admin-cluster-role-binding.yaml 파일 생성하여 롤바인딩
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: eks-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: eks-admin
+  namespace: kube-system
+  
+4. kubectl apply -f eks-admin-cluster-role-binding.yaml
+혹은, 바로 적용도 가능함
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: eks-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: eks-admin
+  namespace: kube-system
+EOF
+
+
+만들어진 eks-admin SA 의 토큰 가져오기
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}')
+KUBE TOKEN 가져오기
+:
+
+Code build와 ECR 연결 정책 설정 : code build -> 빌드 프로젝트 생성 codebuild1
+codebuild2
+codebuild3
+그 뒤는 다음의 url로 설명 대체 https://jootc.com/p/201905122828
+그리고 다시 뒷 내용은 "3. CICD-Pipeline_AWS_v2" pdf 자료 39페이지부터 (이미지가 많은 관계로, buildspec.yml은 복사하기)
+
+환경 변수 (아직 정상 동작 안해서 맞는 지는 모름) env \\아마 위 내용만 하고 진행하면 AccessDeniedException 발생할텐데 role 추가해줘야함\\
+
+{ "Action": [
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:CompleteLayerUpload",
+      "ecr:GetAuthorizationToken",
+      "ecr:InitiateLayerUpload",
+      "ecr:PutImage",
+      "ecr:UploadLayerPart"
+    ],
+    "Resource": "*",
+    "Effect": "Allow"
+}
+
+Codebuild cache 적용 : CICD PDF p.45, S3 만들고 설정해야 함
+buildspec.yml에 aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $_EKS 이거 넣어줘야 하는데 권한 에러 날 경우
+
+https://stackoverflow.com/questions/56011492/accessdeniedexception-creating-eks-cluster-user-is-not-authorized-to-perform 상세 내용은 buildspec.yml과 코브빌드의 환경변수 확인하면 됨
 
 ## 동기식 호출 / 서킷 브레이킹 / 장애격리
 
