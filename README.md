@@ -564,17 +564,14 @@ KUBE TOKEN 가져오기
 
 Code build와 ECR 연결 정책 설정 : code build -> 빌드 프로젝트 생성
 <img width="1029" src=https://user-images.githubusercontent.com/17754849/108522319-0e35a600-7310-11eb-8d63-f32cf0651e0a.png>
-
-
-
-
-
-
+<img width="1029" src=https://user-images.githubusercontent.com/17754849/108524004-ed6e5000-7311-11eb-831d-e6fca77ab59e.png>
+<img width="400" src=https://user-images.githubusercontent.com/17754849/108524571-843b0c80-7312-11eb-968a-9d14b182afb8.png>
 
 그 뒤는 다음의 url로 설명 대체 https://jootc.com/p/201905122828
 그리고 다시 뒷 내용은 "3. CICD-Pipeline_AWS_v2" pdf 자료 39페이지부터 (이미지가 많은 관계로, buildspec.yml은 복사하기)
 
-환경 변수 (아직 정상 동작 안해서 맞는 지는 모름) env \\아마 위 내용만 하고 진행하면 AccessDeniedException 발생할텐데 role 추가해줘야함\\
+환경 변수
+<img width="600" src=https://user-images.githubusercontent.com/17754849/108544309-a1c7a080-7329-11eb-9e2f-702697073c45.png>
 
 { "Action": [
       "ecr:BatchCheckLayerAvailability",
