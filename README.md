@@ -570,6 +570,39 @@ Transfer-Encoding: chunked
 }
 ```
 
+## API 게이트웨이(gateway)
+
+API gateway 를 통해 MSA 진입점을 통일 시킨다.
+
+```
+# gateway 기동(8088 포트)
+cd gateway
+mvn spring-boot:run
+
+# api gateway를 통한 3001 호텔 standard룸 예약 주문
+http localhost:8088/orders hotelId=3001 roomType=standard
+
+HTTP/1.1 201 Created
+Content-Type: application/json;charset=UTF-8
+Date: Mon, 22 Feb 2021 07:36:34 GMT
+Location: http://localhost:8081/orders/13
+transfer-encoding: chunked
+
+{
+    "_links": {
+        "order": {
+            "href": "http://localhost:8081/orders/13"
+        },
+        "self": {
+            "href": "http://localhost:8081/orders/13"
+        }
+    },
+    "hotelId": "3001",
+    "roomType": "standard",
+    "status": null
+}
+```
+
 # 운영
 
 ## CI/CD 설정
