@@ -828,8 +828,14 @@ Pod 들의 요청 대비 평균 CPU 사용율 (여기서는 요청이 200 milli-
 #### 무정지 배포 전 replica 3 scale up
 ![image](https://user-images.githubusercontent.com/17021291/108797620-f0e22f80-75ce-11eb-81db-de7a27574d03.png)
 
-#### 무정지 배포(Rolling Update)
+#### Readiness 설정
+캡처
+
+#### Rolling Update
+kubectl set image deploy order order=새로운 이미지 버전
 ![image](https://user-images.githubusercontent.com/17021291/108797739-461e4100-75cf-11eb-96fc-959f48dc17c0.png)
+
+#### siege로 무중단 확인
 
 # 참고
 
