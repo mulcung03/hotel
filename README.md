@@ -812,7 +812,7 @@ defaulting to time-based testing: 60 seconds
 - 80.34% 성공, 19.66% 실패
 
 ### 오토스케일 아웃
-https://github.com/lv2-team2/hotel/issues/4#issue-814016923
+![image](https://user-images.githubusercontent.com/17021291/108792033-ba52e780-75c3-11eb-8509-26e5e0a3e8ed.png)
 
 ## 무정지 재배포
 로칼 도커+쿠버네틱스 환경 조성 후 작업 예정.
