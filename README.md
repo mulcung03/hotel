@@ -632,7 +632,7 @@ Using generated security password: 4c9b4f9b-ba47-4ad9-b5c0-9b4a12a89a39
 ## CI/CD 설정
 - 환경변수 준비  
 <details markdown="1">
-<summary>접기/펼치기</summary>
+<summary>환경변수 설정 접기/펼치기</summary>
 AWS_ACCOUNT_ID KUBE URL : EKS -> 클러스터 -> 구성 "세부정보"의 "API 엔드포인트 URL" CodeBuild 와 EKS 연결
 
 1. eks-admin-service-account.yaml 파일 생성하여 sa 생성
