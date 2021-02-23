@@ -808,7 +808,7 @@ defaulting to time-based testing: 60 seconds
 - 80.34% 성공, 19.66% 실패
 
 ## 오토스케일 아웃
-####사전 작업
+#### 사전 작업
 1. metric server 설치 - kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
 2. Resource Request/Limit 설정
 ![image](https://user-images.githubusercontent.com/17021291/108804593-09f3dc00-75e1-11eb-9505-6d2140b61d00.png)
@@ -816,20 +816,19 @@ defaulting to time-based testing: 60 seconds
 
 Pod 들의 요청 대비 평균 CPU 사용율 (여기서는 요청이 200 milli-cores이므로, 모든 Pod의 평균 CPU 사용율이 100 milli-cores(50%)를 넘게되면 HPA 발생)"
 
-####Siege 도구 활용한 부하(Stress) 주기
+#### Siege 도구 활용한 부하(Stress) 주기
 1. siege 설치 - kubectl create -f siege.yaml
 2. siege 접속 - kubectl exec -it siege -- /bin/bash
 ![image](https://user-images.githubusercontent.com/17021291/108792500-c1c6c080-75c4-11eb-8d9b-718f7c030de3.png)
 
-####부하에 따른 오토스케일 아웃 모니터링
+#### 부하에 따른 오토스케일 아웃 모니터링
 ![image](https://user-images.githubusercontent.com/17021291/108803415-f4c97e00-75dd-11eb-9fa0-7c01135c551d.png)
 
 ## 무정지 배포
-무정지 배포 전 replica 3 scale up
+#### 무정지 배포 전 replica 3 scale up
 ![image](https://user-images.githubusercontent.com/17021291/108797620-f0e22f80-75ce-11eb-81db-de7a27574d03.png)
 
-무정지 배포(Rolling Update)
-
+#### 무정지 배포(Rolling Update)
 ![image](https://user-images.githubusercontent.com/17021291/108797739-461e4100-75cf-11eb-96fc-959f48dc17c0.png)
 
 # 참고
