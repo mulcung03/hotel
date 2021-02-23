@@ -202,31 +202,34 @@ public interface PaymentRepository extends PagingAndSortingRepository<Payment, L
 - 적용 후 REST API 의 테스트
 ```
 # app 서비스의 주문처리
-http localhost:8081/orders hotelId=1001 roomType=standard
+http localhost:8081/orders hotelId=4001 roomType=delux
+
+# pay 서비스의 결제처리
+http localhost:8083/payments orderId=3 payMethod=card price=100000
 
 # hotel 서비스의 예약처리
-http localhost:8082/reservations orderId=1
+http localhost:8082/reservations orderId=3 status="confirmed"
 
 # 주문 상태 확인
-http localhost:8081/orders/1
+http localhost:8081/orders/3
 
 HTTP/1.1 200 
 Content-Type: application/hal+json;charset=UTF-8
-Date: Wed, 03 Feb 2021 01:10:31 GMT
+Date: Tue, 23 Feb 2021 23:56:54 GMT
 Transfer-Encoding: chunked
 
 {
     "_links": {
         "order": {
-            "href": "http://localhost:8081/orders/1"
+            "href": "http://localhost:8081/orders/3"
         },
         "self": {
-            "href": "http://localhost:8081/orders/1"
+            "href": "http://localhost:8081/orders/3"
         }
     },
-    "hotelId": "1001",
-    "roomType": "standard",
-    "status": null
+    "hotelId": "4001",
+    "roomType": "delux",
+    "status": "confirmed"
 }
 
 ```
