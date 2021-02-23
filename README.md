@@ -107,7 +107,7 @@ pp의 Order, store 의 주문처리, 결제의 결제이력은 그와 연결된 
 - 비지니스 로직은 내부에 순수한 형태로 구현
 - 그 이외의 것을 어댑터 형식으로 설계 하여 해당 비지니스 로직이 어느 환경에서도 잘 도작하도록 설계
 
-<img width="1029" alt="had_20210125" src="https://user-images.githubusercontent.com/58290368/105652095-d6e3fd00-5efb-11eb-9c65-1a2e2b26a7d1.png">
+![event_stream](https://user-images.githubusercontent.com/76020494/108794206-b07fb300-75c8-11eb-9f97-9a4e1695588c.png)
 
 # 구현
 분석/설계 단계에서 도출된 헥사고날 아키텍처에 따라, 각 BC별로 대변되는 마이크로 서비스들을 스프링부트로 구현하였다. 구현한 각 서비스를 로컬에서 실행하는 방법은 아래와 같다 (각자의 포트넘버는 8081 ~ 8084 이다)
