@@ -812,13 +812,11 @@ defaulting to time-based testing: 60 seconds
 1. metric server 설치 - kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
 2. Resource Request/Limit 설정
 ![image](https://user-images.githubusercontent.com/17021291/108804593-09f3dc00-75e1-11eb-9505-6d2140b61d00.png)
-3. HPA 설정
-kubectl autoscale deployment payment --cpu-percent=50 --min=1 --max=10 cpu-percent=50 -n teamtwohotel
-Pod 들의 요청 대비 평균 CPU 사용율 (여기서는 요청이 200 milli-cores이므로, 모든 Pod의 평균 CPU 사용율이 100 milli-cores(50%)를 넘게되면 HPA 발생)"
+3. HPA 설정 - kubectl autoscale deployment payment --cpu-percent=50 --min=1 --max=10 cpu-percent=50 -n teamtwohotel  Pod 들의 요청 대비 평균 CPU 사용율 (여기서는 요청이 200 milli-cores이므로, 모든 Pod의 평균 CPU 사용율이 100 milli-cores(50%)를 넘게되면 HPA 발생)"
 
 Siege 도구 활용한 부하(Stress) 주기
-1. siege 설치 및 접속 - kubectl create -f siege.yaml
-                     kubectl exec -it siege -- /bin/bash
+1. siege 설치 - kubectl create -f siege.yaml
+2. siege 접속 - kubectl exec -it siege -- /bin/bash
 ![image](https://user-images.githubusercontent.com/17021291/108792500-c1c6c080-75c4-11eb-8d9b-718f7c030de3.png)
 
 부하에 따른 오토스케일 아웃 모니터링
