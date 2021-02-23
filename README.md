@@ -631,7 +631,9 @@ Using generated security password: 4c9b4f9b-ba47-4ad9-b5c0-9b4a12a89a39
 
 ## CI/CD 설정
 
+<details markdown="1">
 - 환경변수 준비
+<summary>접기/펼치기</summary>
 AWS_ACCOUNT_ID KUBE URL : EKS -> 클러스터 -> 구성 "세부정보"의 "API 엔드포인트 URL" CodeBuild 와 EKS 연결
 
 1. eks-admin-service-account.yaml 파일 생성하여 sa 생성
@@ -695,9 +697,9 @@ Code build와 ECR 연결 정책 설정 : code build -> 빌드 프로젝트 생�
 
 그리고 다시 뒷 내용은 "3. CICD-Pipeline_AWS_v2" pdf 자료 39페이지부터 (이미지가 많은 관계로, buildspec.yml 작성하기)
 
-환경 변수
+환경 변수  
 <img width="600" src=https://user-images.githubusercontent.com/17754849/108544309-a1c7a080-7329-11eb-9e2f-702697073c45.png>
-
+```
 { "Action": [
       "ecr:BatchCheckLayerAvailability",
       "ecr:CompleteLayerUpload",
@@ -709,12 +711,14 @@ Code build와 ECR 연결 정책 설정 : code build -> 빌드 프로젝트 생�
     "Resource": "*",
     "Effect": "Allow"
 }
+```
 
 Codebuild cache 적용 : CICD PDF p.45, S3 만들고 설정해야 함
 buildspec.yml에 aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $_EKS 이거 넣어줘야 하는데 권한 에러 날 경우
 
 https://stackoverflow.com/questions/56011492/accessdeniedexception-creating-eks-cluster-user-is-not-authorized-to-perform 상세 내용은 buildspec.yml과 코드빌드의 환경변수 확인하면 됨
-
+</details>
+- CI/CD 적용 및 빌드 성공 결과  
 <img width="700" src=https://user-images.githubusercontent.com/17754849/108810818-5219fb00-75ef-11eb-9fe4-9ae4e2a4e8d7.png>
 
 ## 동기식 호출 / 서킷 브레이킹 / 장애격리
