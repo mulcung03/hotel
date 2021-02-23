@@ -812,6 +812,10 @@ defaulting to time-based testing: 60 seconds
 - 80.34% 성공, 19.66% 실패
 
 ### 오토스케일 아웃
+Siege 도구 활용한 부하(Stress) 주기
+![image](https://user-images.githubusercontent.com/17021291/108792500-c1c6c080-75c4-11eb-8d9b-718f7c030de3.png)
+
+부하에 따른 오토스케일 아웃 모니터링
 ![image](https://user-images.githubusercontent.com/17021291/108792033-ba52e780-75c3-11eb-8509-26e5e0a3e8ed.png)
 
 ## 무정지 재배포
