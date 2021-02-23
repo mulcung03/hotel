@@ -819,7 +819,9 @@ Siege 도구 활용한 부하(Stress) 주기
 ![image](https://user-images.githubusercontent.com/17021291/108792033-ba52e780-75c3-11eb-8509-26e5e0a3e8ed.png)
 
 ## 무정지 재배포
-로칼 도커+쿠버네틱스 환경 조성 후 작업 예정.
+무정지 배포 전 replica 3 scale up
+![image](https://user-images.githubusercontent.com/17021291/108797620-f0e22f80-75ce-11eb-81db-de7a27574d03.png)
+
 
 # 참고
 
