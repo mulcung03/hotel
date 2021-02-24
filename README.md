@@ -355,7 +355,7 @@ http localhost:8081/orders hotelId=1002 roomType=delux
 HTTP/1.1 500 
 Connection: close
 Content-Type: application/json;charset=UTF-8
-Date: Wed, 03 Feb 2021 01:27:19 GMT
+Date: Wed, 24 Feb 2021 00:00:18 GMT
 Transfer-Encoding: chunked
 
 {
@@ -363,24 +363,7 @@ Transfer-Encoding: chunked
     "message": "Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Error while committing the transaction",
     "path": "/orders",
     "status": 500,
-    "timestamp": "2021-02-03T01:27:19.505+0000"
-}
-
-http localhost:8081/orders hotelId=1003 roomType=suite   
-
-#Fail
-HTTP/1.1 500 
-Connection: close
-Content-Type: application/json;charset=UTF-8
-Date: Wed, 03 Feb 2021 01:28:00 GMT
-Transfer-Encoding: chunked
-
-{
-    "error": "Internal Server Error",
-    "message": "Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Error while committing the transaction",
-    "path": "/orders",
-    "status": 500,
-    "timestamp": "2021-02-03T01:28:00.481+0000"
+    "timestamp": "2021-02-24T00:00:18.829+0000"
 }
 
 #결제서비스 재기동
@@ -393,30 +376,7 @@ http localhost:8081/orders hotelId=1002 roomType=delux
 #Success
 HTTP/1.1 201 
 Content-Type: application/json;charset=UTF-8
-Date: Wed, 03 Feb 2021 01:29:55 GMT
-Location: http://localhost:8081/orders/7
-Transfer-Encoding: chunked
-
-{
-    "_links": {
-        "order": {
-            "href": "http://localhost:8081/orders/7"
-        },
-        "self": {
-            "href": "http://localhost:8081/orders/7"
-        }
-    },
-    "hotelId": "1002",
-    "roomType": "delux",
-    "status": null
-}
-
-http localhost:8081/orders hotelId=1003 roomType=suite
-
-#Success
-HTTP/1.1 201 
-Content-Type: application/json;charset=UTF-8
-Date: Wed, 03 Feb 2021 01:31:16 GMT
+Date: Wed, 24 Feb 2021 00:01:10 GMT
 Location: http://localhost:8081/orders/9
 Transfer-Encoding: chunked
 
@@ -429,8 +389,8 @@ Transfer-Encoding: chunked
             "href": "http://localhost:8081/orders/9"
         }
     },
-    "hotelId": "1003",
-    "roomType": "suite",
+    "hotelId": "1002",
+    "roomType": "delux",
     "status": null
 }
 ```
@@ -516,24 +476,24 @@ public class PolicyHandler{
 http localhost:8081/orders hotelId=3001 roomType=suite   #Success
 
 # 결제처리
-http localhost:8083/payments orderId=1 price=100000 payMethod=card   #Success
+http localhost:8083/payments orderId=11 price=100000 payMethod=card   #Success
 
 # 주문 상태 확인
-http localhost:8081/orders/1     
+http localhost:8081/orders/11     
 
 # 주문상태 안바뀜 확인
 HTTP/1.1 200 
 Content-Type: application/hal+json;charset=UTF-8
-Date: Wed, 03 Feb 2021 05:07:37 GMT
+Date: Wed, 24 Feb 2021 00:03:23 GMT
 Transfer-Encoding: chunked
 
 {
     "_links": {
         "order": {
-            "href": "http://localhost:8081/orders/1"
+            "href": "http://localhost:8081/orders/11"
         },
         "self": {
-            "href": "http://localhost:8081/orders/1"
+            "href": "http://localhost:8081/orders/11"
         }
     },
     "hotelId": "3001",
@@ -546,21 +506,21 @@ cd /Users/imdongbin/Documents/study/MSA/hotel/hotel
 mvn spring-boot:run
 
 # 주문상태 확인
-http localhost:8081/orders/1
+http localhost:8081/orders/11
 
 # 주문 상태가 "Confirming reservation"으로 확인
 HTTP/1.1 200 
 Content-Type: application/hal+json;charset=UTF-8
-Date: Wed, 03 Feb 2021 05:08:24 GMT
+Date: Wed, 24 Feb 2021 00:04:03 GMT
 Transfer-Encoding: chunked
 
 {
     "_links": {
         "order": {
-            "href": "http://localhost:8081/orders/1"
+            "href": "http://localhost:8081/orders/11"
         },
         "self": {
-            "href": "http://localhost:8081/orders/1"
+            "href": "http://localhost:8081/orders/11"
         }
     },
     "hotelId": "3001",
