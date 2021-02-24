@@ -13,9 +13,9 @@ Winter School 2팀 Workspace입니다.
     - [폴리글랏 프로그래밍](#폴리글랏-프로그래밍)
     - [동기식 호출 과 Fallback 처리](#동기식-호출-과-Fallback-처리)
     - [비동기식 호출 과 Eventual Consistency](#비동기식-호출--시간적-디커플링--장애격리--최종-eventual-일관성-테스트)
-    - [API Gateway](#API-GATEWAY)
-    - [Saga Pattern / 보상 트랜잭션](#Saga-Pattern--보상-트랜잭션)
-    - [CQRS / Meterialized View](#CQRS--Meterialized-View)
+    - [API Gateway](#API-게이트웨이-gateway)
+    - [CQRS / Meterialized View](#마이페이지)
+    - [Saga Pattern / 보상 트랜잭션](#SAGA-CQRS-동작-결과)
   - [운영](#운영)
     - [Liveness / Readiness 설정](#Liveness--Readiness-설정)
     - [CI/CD 설정](#cicd-설정)
@@ -24,8 +24,7 @@ Winter School 2팀 Workspace입니다.
     - [오토스케일 아웃](#오토스케일-아웃)
     - [무정지 재배포](#무정지-재배포)
     - [모니터링](#모니터링)
-    - [Persistence Volum Claim](#Persistence-Volum-Claim)
-    - [ConfigMap / Secret](#ConfigMap--Secret)
+    - [ConfigMap / Secret](#Configmap)
 
 ## 시나리오
 
@@ -732,7 +731,7 @@ Using generated security password: 4c9b4f9b-ba47-4ad9-b5c0-9b4a12a89a39
 - 포스트맨에서 앞서 확인한 비밀번호 "4c9b4f9b-ba47-4ad9-b5c0-9b4a12a89a39"를 입력 하여 동일한 orders/19 상세 조회
 <img width="945" alt="스크린샷 2021-02-22 오후 6 57 46" src="https://user-images.githubusercontent.com/58290368/108692422-ecbb0100-753f-11eb-9e81-85b58eed57be.png">
 
-# SAGA & CQRS 동작 결과
+# SAGA CQRS 동작 결과
 1. 호텔 예약 발생
 ![order1](https://user-images.githubusercontent.com/76020494/108938712-f05f9c80-7693-11eb-9617-6e6564f9e7ec.png)
 2. 예약 KAFKA 메시지 확인
@@ -1071,7 +1070,7 @@ kubectl set image deploy order order=새로운 이미지 버전
 ![image](https://user-images.githubusercontent.com/17021291/108806577-6f49cc00-75e5-11eb-99c8-8904c9995186.png)
 
 
-## Configmap  (4.Container_Orchestration(Docker & Kubernetes)_AWS_v2 2.pdf p.139)
+## Configmap
 - configmap 생성  
   > kubectl create configmap my-config --from-literal=key1=value1 --from-literal=key2=value2
 - configmap 정보 가져오기  
