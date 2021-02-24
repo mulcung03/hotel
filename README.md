@@ -4,7 +4,7 @@ Winter School 2팀 Workspace입니다.
 
 # Table of contents
 
-- [](#---)
+- [호텔예약](#---)
   - [서비스 시나리오](#시나리오)
   - [분석/설계](#분석-설계)
   - [구현:](#구현)
@@ -1115,6 +1115,7 @@ https://whitepaek.tistory.com/38
 위에 가면 도커 관련 명령어들도 있음
 
 2. 카프카 설치
+```
 https://dev-jj.tistory.com/entry/MAC-Kafka-%EB%A7%A5%EC%97%90-Kafka-%EC%84%A4%EC%B9%98-%ED%95%98%EA%B8%B0-Docker-homebrew-Apache
 https://jdm.kr/blog/208
 경로 이동 /Users/jinhyeonbak/intensive/kafka_2.12-2.3.0/bin
@@ -1132,6 +1133,7 @@ https://jdm.kr/blog/208
 카프카 토픽 리스트 ./kafka-topics.sh --list --zookeeper localhost:2181
 카프카가 비정상일 때 sudo lsof -i :2181 한뒤
 kill -9 pid 하고 다시 띄워준다
+```
 
 3. httpie 설치
 
