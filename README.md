@@ -859,6 +859,7 @@ data:
 ```
   > kubectl create -f configmap.yml
 - ![configmap](https://user-images.githubusercontent.com/17754849/108792601-fd618a80-75c4-11eb-9386-3d8785979309.png)
+- 출력하는 소스는 아래의 secret에서 함께 
 
 ## Secret
 - 시크릿 생성
