@@ -17,12 +17,11 @@ Winter School 2팀 Workspace입니다.
     - [CQRS / Meterialized View](#마이페이지)
     - [Saga Pattern / 보상 트랜잭션](#SAGA-CQRS-동작-결과)
   - [운영](#운영)
-    - [Liveness / Readiness 설정](#Liveness--Readiness-설정)
     - [CI/CD 설정](#cicd-설정)
     - [Self Healing](#Self-Healing)
     - [동기식 호출 / 서킷 브레이킹 / 장애격리](#동기식-호출--서킷-브레이킹--장애격리)
     - [오토스케일 아웃](#오토스케일-아웃)
-    - [무정지 재배포](#무정지-재배포)
+    - [무정지 재배포](#무정지-배포)
     - [ConfigMap / Secret](#Configmap)
 
 ## 시나리오
