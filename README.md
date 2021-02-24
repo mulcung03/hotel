@@ -2,6 +2,31 @@
 
 Winter School 2팀 Workspace입니다.
 
+# Table of contents
+
+- [음료주문](#---)
+  - [서비스 시나리오](#시나리오)
+  - [분석/설계](#분석/설계)
+  - [구현:](#구현-)
+    - [DDD 의 적용](#ddd-의-적용)
+    - [API Gateway](#API-GATEWAY)
+    - [폴리글랏 퍼시스턴스](#폴리글랏-퍼시스턴스)
+    - [폴리글랏 프로그래밍](#폴리글랏-프로그래밍)
+    - [동기식 호출 과 Fallback 처리](#동기식-호출-과-Fallback-처리)
+    - [비동기식 호출 과 Eventual Consistency](#비동기식-호출--시간적-디커플링--장애격리--최종-eventual-일관성-테스트)
+    - [Saga Pattern / 보상 트랜잭션](#Saga-Pattern--보상-트랜잭션)
+    - [CQRS / Meterialized View](#CQRS--Meterialized-View)
+  - [운영](#운영)
+    - [Liveness / Readiness 설정](#Liveness--Readiness-설정)
+    - [CI/CD 설정](#cicd-설정)
+    - [Self Healing](#Self-Healing)
+    - [동기식 호출 / 서킷 브레이킹 / 장애격리](#동기식-호출--서킷-브레이킹--장애격리)
+    - [오토스케일 아웃](#오토스케일-아웃)
+    - [무정지 재배포](#무정지-재배포)
+    - [모니터링](#모니터링)
+    - [Persistence Volum Claim](#Persistence-Volum-Claim)
+    - [ConfigMap / Secret](#ConfigMap--Secret)
+
 ## 시나리오
 
 호텔 예약 시스템에서 요구하는 기능/비기능 요구사항은 다음과 같습니다. 사용자가 예약과 함께 결제를 진행하고 나면 객실 관리자가 객실을 배정하는 시스템입니다. 이 과정에 대해서 고객은 진행 상황을 확인할 수 있고, 카카오톡으로 알림을 받을 수 있습니다. 
