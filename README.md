@@ -300,6 +300,39 @@ Transfer-Encoding: chunked
 
 ```
 
+## 마이페이지
+
+고객의 예약정보를 한 눈에 볼 수 있게 mypage를 구현 한다.(CQRS)
+
+```
+# mypage 호출 
+http localhost:8081/mypages/12
+
+HTTP/1.1 200 
+Content-Type: application/hal+json;charset=UTF-8
+Date: Wed, 24 Feb 2021 00:09:57 GMT
+Transfer-Encoding: chunked
+
+{
+    "_links": {
+        "mypage": {
+            "href": "http://localhost:8081/mypages/12"
+        },
+        "self": {
+            "href": "http://localhost:8081/mypages/12"
+        }
+    },
+    "hotelId": "3001",
+    "orderId": 11,
+    "payMethod": "card",
+    "paymentId": null,
+    "price": 100000,
+    "reservationId": 2,
+    "roomType": "suite",
+    "status": "Confirming reservation"
+}
+```
+
 ## 동기식 호출 과 Fallback 처리
 
 분석단계에서의 조건 중 하나로 주문(app)->결제(pay) 간의 호출은 동기식 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다. 
