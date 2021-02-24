@@ -623,6 +623,21 @@ Using generated security password: 4c9b4f9b-ba47-4ad9-b5c0-9b4a12a89a39
 - 포스트맨에서 앞서 확인한 비밀번호 "4c9b4f9b-ba47-4ad9-b5c0-9b4a12a89a39"를 입력 하여 동일한 orders/19 상세 조회
 <img width="945" alt="스크린샷 2021-02-22 오후 6 57 46" src="https://user-images.githubusercontent.com/58290368/108692422-ecbb0100-753f-11eb-9e81-85b58eed57be.png">
 
+# SAGA & CQRS 동작 결과
+1. 호텔 예약 발생
+![order1](https://user-images.githubusercontent.com/76020494/108938712-f05f9c80-7693-11eb-9617-6e6564f9e7ec.png)
+2. 예약 KAFKA 메시지 확인
+![order_kafka](https://user-images.githubusercontent.com/76020494/108938721-f3f32380-7693-11eb-92f5-6257ba18faf6.png)
+3. 예약 내역 Mypage 확인 
+![order_mypage](https://user-images.githubusercontent.com/76020494/108938732-f6557d80-7693-11eb-88db-93933a6182e2.png)
+
+4. 취소 발생
+![cancel](https://user-images.githubusercontent.com/76020494/108938741-fa819b00-7693-11eb-8d97-9f549685cada.png)
+5. 취소 KAFKA 메시지 확인
+![cancel_kafka](https://user-images.githubusercontent.com/76020494/108938746-fbb2c800-7693-11eb-9566-62a9498e015a.png)
+6. 취소 상태 Mypage 확인
+![cancel_mypage](https://user-images.githubusercontent.com/76020494/108938753-fd7c8b80-7693-11eb-8016-4b00100def94.png)
+
 # 운영
 
 ## CI/CD 설정
